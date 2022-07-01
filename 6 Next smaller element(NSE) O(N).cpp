@@ -13,9 +13,8 @@ void printNSE(int arr[], int n)
 	for (int i = 0; i < n; i++) 
   	{
 	      int next = arr[i];
-	      // if stack is empty then this element can't be NSE
-	      // for any other element, so just push it to stack
-	      // so that we can find NSE for it, and continue
+	      // if stack is empty then this element can't be NSE for any other element,
+	      //so just push it to stack so that we can find NSE for it, and continue
 	      if (s.empty()) 
 	      {
 		s.push({ next, i });
