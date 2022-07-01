@@ -7,9 +7,8 @@ using namespace std;
 void printNSE(int arr[], int n)
 {
 	stack<pair<int, int> > s;
-	vector<int> ans(n);
+	vector<int> answer(n);  //this is our ans array
 
-	// iterate for rest of the elements
 	for (int i = 0; i < n; i++) 
   	{
 	      int next = arr[i];
@@ -17,18 +16,17 @@ void printNSE(int arr[], int n)
 	      //so just push it to stack so that we can find NSE for it, and continue
 	      if (s.empty()) 
 	      {
-		s.push({ next, i });
+		s.push({ next, i });  // push {element,index}
 		continue;
 	      }
 
-	      // while stack is not empty and the top element is
-	      // greater than next
-	      // a) NSE for top is next, use top's index to
-	      // maintain original order
+	      // while stack is not empty and the top element is greater than next
+	      // a) NSE for top is next, use top's index to maintain original order
 	      // b) pop the top element from stack
 
-	      while (!s.empty() && s.top().first > next) {
-		ans[s.top().second] = next;
+	      while (!s.empty() && s.top().first > next) 
+	      {
+		answer[s.top().second] = next;
 		s.pop();
 	      }
 
@@ -42,13 +40,13 @@ void printNSE(int arr[], int n)
 
 	while (!s.empty()) 
         {
-		ans[s.top().second] = -1;
+		answer[s.top().second] = -1;
 		s.pop();
 	}
 
 	for (int i = 0; i < n; i++) 
   	{
-		cout << arr[i] << " ---> " << ans[i] << endl;
+		cout << arr[i] << " ---> " << answer[i] << endl;
 	}
 }
 
