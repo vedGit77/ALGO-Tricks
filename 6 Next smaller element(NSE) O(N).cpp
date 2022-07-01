@@ -24,30 +24,23 @@ void printNSE(int arr[], int n)
 	      // a) NSE for top is next, use top's index to maintain original order
 	      // b) pop the top element from stack
 
-	      while (!s.empty() && s.top().first > next) 
+	      while (!s.empty() && s.top().first > next) //stop when stack is empty or next is smaller than s.top().first
 	      {
-		answer[s.top().second] = next;
-		s.pop();
+		    answer[s.top().second] = next;  //if next is smaller....then NSE for element at that index = next
+		    s.pop();  
 	      }
 
-	      // push next to stack so that we can find NSE for it
-
-	      s.push({ next, i });
+	      s.push({ next, i }); // push next to stack so that we can find NSE for it
 	}
 
-	// After iterating over the loop, the remaining elements
-	// in stack do not have any NSE, so set -1 for them
-
-	while (!s.empty()) 
+	while (!s.empty())   //the remaining elements in stack do not have any NSE, so set -1 for them
         {
 		answer[s.top().second] = -1;
 		s.pop();
 	}
 
-	for (int i = 0; i < n; i++) 
-  	{
+	for (int i = 0; i < n; i++) //print
 		cout << arr[i] << " ---> " << answer[i] << endl;
-	}
 }
 
 int main()
