@@ -16,14 +16,12 @@ long long moduloMultiplication(long long a, long long b, long long mod)
     a %= mod;
  
     while (b) {
-        // If b is odd, add a with result
-        if (b & 1)
-            res = (res + a) % mod;
+        if (b & 1)  //if odd
+            res = (res + a) % mod; //add to res
  
-        // Here we assume that doing 2*a doesn't cause overflow
-        a = (2 * a) % mod;
+        a = (2 * a) % mod;  //DONO ke liye->odd/even
  
-        b >>= 1;
+        b >>= 1;  //DONO ke liye->odd/even
     }
  
     return res;
