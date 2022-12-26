@@ -17,9 +17,9 @@ long long moduloMultiplication(long long a, long long b, long long mod)
  
     while (b) {
         if (b & 1)  //if odd
-            res = (res + a) % mod; //add to res
+            res = (res + a) % mod; //yaha res
  
-        a = (2 * a) % mod;  //DONO ke liye->odd/even
+        a = (2 * a) % mod;  //yaha a
  
         b >>= 1;  //DONO ke liye->odd/even
     }
