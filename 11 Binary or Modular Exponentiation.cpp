@@ -5,7 +5,7 @@ int power(long long x, unsigned int y, int p)
 {
     int res = 1;	
   
-    x = x % p; // Update x if it is more than or equal to p
+    x = x % p; // Update x 
     
     // y = y%p;  =>DONT DO => FATAL!
   
