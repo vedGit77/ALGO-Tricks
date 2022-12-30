@@ -1,4 +1,7 @@
-n*m = GCD(n,m)*LCM(n,m)   =>IMP
+
+=>  n*m = GCD(n,m)*LCM(n,m)   
+    
+=> for coprime numbers, GCD = 1
 
 code=> 
 
