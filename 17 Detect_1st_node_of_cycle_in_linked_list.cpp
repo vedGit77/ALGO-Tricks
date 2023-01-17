@@ -37,7 +37,7 @@ public:
 
         while(slow != fast){
             slow = slow->next;
-            fast = fast->next;   //imp-2  //not fast->next->next
+            fast = fast->next;   //imp-2  //MOVE @ SAME SPD.
         }
 
         return slow;
