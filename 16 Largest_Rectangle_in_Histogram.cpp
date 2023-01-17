@@ -29,8 +29,8 @@ int getMaxArea(int hist[], int n)
     
 		if (s.empty() || hist[s.top()] <= hist[i]){
 			s.push(i);
-      i++;
-    }
+	      		i++;
+	    	}
 
 		// If this bar is lower than top of stack, then calculate area of rectangle with stack top as the smallest (or minimum height) bar.
 		// 'i' is 'right index' for the top and element before top in stack is 'left index'.
@@ -40,7 +40,7 @@ int getMaxArea(int hist[], int n)
 
 			area_with_top = hist[tp] * (s.empty() ? i : i - s.top() - 1);  // Calculate the area with hist[tp] stack as smallest bar
 
-      max_area = max(max_area, area_with_top);
+      			max_area = max(max_area, area_with_top);
 		}
     
 	}
