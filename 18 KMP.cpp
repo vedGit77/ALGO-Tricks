@@ -317,9 +317,11 @@ void KMPSearch(char* pat, char* txt)
 	}
 }
 
-// Fills lps[] for given pattern pat[0..M-1]
+
 void computeLPSArray(char* pat, int M, int* lps)
 {
+	//this whole function can be understood by the DEFN of len variable and lps array => very easy
+	
 	int len = 0; // length of the PREVIOUS longest prefix suffix
 	lps[0] = 0; // lps[0] is always 0
 
