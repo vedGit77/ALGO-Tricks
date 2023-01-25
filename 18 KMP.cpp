@@ -68,3 +68,291 @@
 // =>“AAACAAAAAC”, lps[] is [0, 1, 2, 0, 1, 2, 3, 3, 3, 4] 
 
 
+
+
+
+// Preprocessing Algorithm:
+// => Calculate values in lps[]. For that => keep track of the length of the longest prefix suffix value (use len variable for this) for the PREVIOUS index
+// => initialize lps[0] and len as 0
+// => If pat[len] and pat[i] match, we increment len by 1 and assign the incremented value to lps[i].
+// => If pat[i] and pat[len] do not match 
+//      a) len>0 => update len to lps[len-1]
+//      b) len==0 => do => lps[i]=0 and i++
+
+
+
+// Illustration of preprocessing (or construction of lps[]):
+
+// pat[] = “AAACAAAA”
+
+// len = 0, i  = 0.
+// lps[0] is always 0, we move 
+
+// to i = 1
+// len = 0, i  = 1.
+
+// Since pat[len] and pat[i] match, 
+// do len++, 
+// store it in lps[i] and do i++.
+// len = 1, lps[1] = 1, i = 2
+
+// len = 1, i  = 2.
+
+// Since pat[len] and pat[i] match, 
+// do len++, 
+// store it in lps[i] and do i++.
+// len = 2, lps[2] = 2, i = 3
+
+// len = 2, i  = 3.
+
+// Since pat[len] and pat[i] do not match, and len > 0, 
+// len = lps[len-1] = lps[1] = 1
+
+// len = 1, i  = 3.
+
+// Since pat[len] and pat[i] do not match and len > 0, 
+// len = lps[len-1] = lps[0] = 0
+
+// len = 0, i  = 3.
+
+// Since pat[len] and pat[i] do not match and len = 0,  
+// Set lps[3] = 0 and i = 4.
+// We know that characters pat 
+
+// len = 0, i  = 4.
+
+// Since pat[len] and pat[i] match, 
+// do len++, 
+// store it in lps[i] and do i++. len = 1, lps[4] = 1, i = 5
+
+// len = 1, i  = 5.
+
+// Since pat[len] and pat[i] match, 
+// do len++, 
+// store it in lps[i] and do i++.
+
+// len = 2, lps[5] = 2, i = 6
+// len = 2, i  = 6.
+
+// Since pat[len] and pat[i] match, 
+// do len++, 
+// store it in lps[i] and do i++.
+
+// len = 3, lps[6] = 3, i = 7
+// len = 3, i  = 7.
+
+// Since pat[len] and pat[i] do not match and len > 0,
+// set len = lps[len-1] = lps[2] = 2
+
+// len = 2, i  = 7.
+
+// Since pat[len] and pat[i] match, \
+// do len++, 
+// store it in lps[i] and do i++.
+// len = 3, lps[7] = 3, i = 8
+
+// We stop here as we have constructed the whole lps[].
+
+
+
+
+
+
+
+
+// Implementation of KMP algorithm:
+// Unlike the Naive algorithm, where we slide the pattern by one and compare all characters at each shift, 
+// we use a value from lps[] to decide the next characters to be matched. The idea is to NOT match a character that we know will anyway match.
+
+// How to use lps[] to decide the the number of characters to be skipped?
+
+// We start the comparison of pat[j] with j = 0 with characters of the current window of text.
+// We keep matching characters txt[i] and pat[j] and keep incrementing i and j while pat[j] and txt[i] keep matching.
+
+// When we see a mismatch
+// We know that characters pat[0 ... j-1] match with txt[i-j ... i-1] 
+
+// => (Note that j starts with 0 and increments it only when there is a match).
+// => We also know (from the above definition) that lps[j-1] is the count of characters of pat[0…j-1] that are both proper prefix and suffix.
+// From the above two points => confirmed => we do NOT need to match these lps[j-1] characters with txt[i-j … i-1] => we know that they already match.
+
+
+
+
+
+
+// Below is the illustration of the above algorithm:
+
+// txt[] = “AAAAABAAABA” , pat[] = “AAAA”
+// lps[] = {0, 1, 2, 3} 
+
+// i = 0, j = 0
+
+// txt[] = “AAAAABAAABA” 
+// pat[] = “AAAA”
+// txt[i] and pat[j] match, do i++, j++
+
+// i = 1, j = 1
+
+// txt[] = “AAAAABAAABA” 
+// pat[] = “AAAA”
+// txt[i] and pat[j] match, do i++, j++
+
+// i = 2, j = 2
+
+// txt[] = “AAAAABAAABA” 
+// pat[] = “AAAA”
+// pat[i] and pat[j] match, do i++, j++
+
+// i = 3, j = 3
+
+// txt[] = “AAAAABAAABA” 
+// pat[] = “AAAA”
+// txt[i] and pat[j] match, do i++, j++
+
+// i = 4, j = 4
+
+// Since j == M, print pattern found and reset j,                ********IMP********
+// j = lps[j-1] = lps[3] = 3
+
+// Here unlike Naive algorithm, we do not match first three 
+// characters of this window. Value of lps[j-1] (in above step) gave us index of next character to match.
+
+// i = 4, j = 3
+
+// txt[] = “AAAAABAAABA” 
+// pat[] =  “AAAA”
+// txt[i] and pat[j] match, do i++, j++
+
+// i = 5, j = 4
+
+// Since j == M, print pattern found and reset j, j = lps[j-1] = lps[3] = 3
+
+// Again unlike Naive algorithm, we do not match first three 
+// characters of this window. Value of lps[j-1] (in above step) gave us index of next character to match.
+
+// i = 5, j = 3
+
+// txt[] = “AAAAABAAABA” 
+// pat[] =   “AAAA”
+// txt[i] and pat[j] do NOT match and j > 0, change only j
+// j = lps[j-1] = lps[2] = 2
+
+// i = 5, j = 2
+
+// txt[] = “AAAAABAAABA” 
+// pat[] =    “AAAA”
+// txt[i] and pat[j] do NOT match and j > 0, change only j
+// j = lps[j-1] = lps[1] = 1 
+
+// i = 5, j = 1
+
+// txt[] = “AAAAABAAABA” 
+// pat[] =     “AAAA”
+// txt[i] and pat[j] do NOT match and j > 0, change only j
+// j = lps[j-1] = lps[0] = 0
+
+// i = 5, j = 0
+
+// txt[] = “AAAAABAAABA” 
+// pat[] =      “AAAA”
+// txt[i] and pat[j] do NOT match and j is 0, we do i++.            *******IMP*******
+
+// i = 6, j = 0
+
+// txt[] = “AAAAABAAABA” 
+// pat[] =       “AAAA”
+// txt[i] and pat[j] match, do i++ and j++
+
+// i = 7, j = 1
+
+// txt[] = “AAAAABAAABA” 
+// pat[] =       “AAAA”
+// txt[i] and pat[j] match, do i++ and j++
+
+// We continue this way till there are sufficient characters in the text to be compared with the characters in the pattern...
+
+
+
+
+
+
+
+
+
+
+void computeLPSArray(char* pat, int M, int* lps);
+
+// Prints occurrences of txt[] in pat[]
+void KMPSearch(char* pat, char* txt)
+{
+	int M = strlen(pat);
+	int N = strlen(txt);
+
+	int lps[M];
+
+	// Preprocess the pattern (calculate lps[] array)
+	computeLPSArray(pat, M, lps);
+
+	int i = 0; // index for txt[]
+	int j = 0; // index for pat[]
+	while ((N - i) >= (M - j)) {
+		if (pat[j] == txt[i]) {
+			j++;
+			i++;
+		}
+
+		if (j == M) {
+			printf("Found pattern at index %d ", i - j);
+			j = lps[j - 1];
+		}
+
+		// mismatch after j matches
+		else if (i < N && pat[j] != txt[i]) {
+			// Do not match lps[0..lps[j-1]] characters,
+			// they will match anyway
+			if (j != 0)
+				j = lps[j - 1];
+			else
+				i = i + 1;
+		}
+	}
+}
+
+// Fills lps[] for given pattern pat[0..M-1]
+void computeLPSArray(char* pat, int M, int* lps)
+{
+	// length of the previous longest prefix suffix
+	int len = 0;
+
+	lps[0] = 0; // lps[0] is always 0
+
+	// the loop calculates lps[i] for i = 1 to M-1
+	int i = 1;
+	while (i < M) {
+		if (pat[i] == pat[len]) {
+			len++;
+			lps[i] = len;
+			i++;
+		}
+		else // (pat[i] != pat[len])
+		{
+			// This is tricky. Consider the example.
+			// AAACAAAA and i = 7. The idea is similar
+			// to search step.
+			if (len != 0) {
+				len = lps[len - 1];
+
+				// Also, note that we do not increment
+				// i here
+			}
+			else // if (len == 0)
+			{
+				lps[i] = 0;
+				i++;
+			}
+		}
+	}
+}
+
+
