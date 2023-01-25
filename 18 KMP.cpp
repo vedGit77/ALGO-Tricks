@@ -289,7 +289,7 @@ void KMPSearch(char* pat, char* txt)
 	int M = strlen(pat);
 	int N = strlen(txt);
 
-	int lps[M];
+	int lps[M];   //size of lps is always M
 
 	// Preprocess the pattern (calculate lps[] array)
 	computeLPSArray(pat, M, lps);
