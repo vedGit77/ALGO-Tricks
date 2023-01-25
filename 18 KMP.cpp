@@ -336,8 +336,8 @@ void computeLPSArray(char* pat, int M, int* lps)
 		else
 		{
 			if (len != 0) {
-				len = lps[len - 1];
-				//do NOT increment i here
+				len = lps[len - 1];      //NOT lps[i-1] => logical => see defn of len
+				                         //do NOT increment i here
 			}
 			else 
 			{
