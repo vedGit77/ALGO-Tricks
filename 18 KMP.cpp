@@ -296,12 +296,13 @@ void KMPSearch(char* pat, char* txt)
 
 	int i = 0; // index for txt[]
 	int j = 0; // index for pat[]
-	while ((N - i) >= (M - j)) {
+	
+	while ((N - i) >= (M - j)) {       //imp condn in while loop 
 		if (pat[j] == txt[i]) {
 			j++;
 			i++;
 		}
-
+		
 		if (j == M) {
 			printf("Found pattern at index %d ", i - j);
 			j = lps[j - 1];
@@ -309,8 +310,7 @@ void KMPSearch(char* pat, char* txt)
 
 		// mismatch after j matches
 		else if (i < N && pat[j] != txt[i]) {
-			// Do not match lps[0..lps[j-1]] characters,
-			// they will match anyway
+			// Do not match lps[0..lps[j-1]] characters, they will match anyway
 			if (j != 0)
 				j = lps[j - 1];
 			else
@@ -322,12 +322,10 @@ void KMPSearch(char* pat, char* txt)
 // Fills lps[] for given pattern pat[0..M-1]
 void computeLPSArray(char* pat, int M, int* lps)
 {
-	// length of the previous longest prefix suffix
-	int len = 0;
-
+	int len = 0; // length of the PREVIOUS longest prefix suffix
 	lps[0] = 0; // lps[0] is always 0
 
-	// the loop calculates lps[i] for i = 1 to M-1
+	// the loop calculates lps[i] for i = 1 to M-1           ***** IMP => i=1, NOT 0 *****
 	int i = 1;
 	while (i < M) {
 		if (pat[i] == pat[len]) {
@@ -335,18 +333,13 @@ void computeLPSArray(char* pat, int M, int* lps)
 			lps[i] = len;
 			i++;
 		}
-		else // (pat[i] != pat[len])
+		else
 		{
-			// This is tricky. Consider the example.
-			// AAACAAAA and i = 7. The idea is similar
-			// to search step.
 			if (len != 0) {
 				len = lps[len - 1];
-
-				// Also, note that we do not increment
-				// i here
+				//do NOT increment i here
 			}
-			else // if (len == 0)
+			else 
 			{
 				lps[i] = 0;
 				i++;
