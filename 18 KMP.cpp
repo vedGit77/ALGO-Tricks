@@ -307,8 +307,7 @@ void KMPSearch(char* pat, char* txt)
 			printf("Found pattern at index %d ", i - j);     //imp => found @ (i-j)
 			j = lps[j - 1];
 		}
-		else if (i < N && pat[j] != txt[i]) {  
-			// Do not match lps[0..lps[j-1]] characters, they will match anyway
+		else if (i < N && pat[j] != txt[i]) {                //else if ke andar ki condn is IMP
 			if (j != 0)
 				j = lps[j - 1];
 			else
