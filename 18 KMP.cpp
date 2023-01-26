@@ -303,11 +303,13 @@ void KMPSearch(char* pat, char* txt)
 			i++;
 		}
 		
+		//if above (if) condn is true => i and j increment => again with these incremented i and j => we use (if) and (else if) wala condn
+		
 		if (j == M) {
 			printf("Found pattern at index %d ", i - j);     //imp => found @ (i-j)
 			j = lps[j - 1];
 		}
-		else if (i < N && pat[j] != txt[i]) {                //else if ke andar ki condn is IMP
+		else if (i < N && pat[j] != txt[i]) {                //else if ki condn is IMP  => (i < N) && (pat[j] != txt[i])
 			if (j != 0)
 				j = lps[j - 1];
 			else
