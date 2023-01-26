@@ -304,7 +304,7 @@ void KMPSearch(char* pat, char* txt)
 		}
 		
 		if (j == M) {
-			printf("Found pattern at index %d ", i - j);
+			printf("Found pattern at index %d ", i - j);     //imp => found @ (i-j)
 			j = lps[j - 1];
 		}
 		else if (i < N && pat[j] != txt[i]) {  
