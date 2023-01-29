@@ -24,6 +24,11 @@ g.back();
 //pop
 g.pop_front();
 g.pop_back();
+
+
+//erase
+list<int>::iterator itr = g.begin();
+g.erase(itr);
  
 
 //reverse
