@@ -41,7 +41,9 @@ long long smallestpositive(vector<long long> arr, int n) {
 
     sort(arr.begin(), arr.end());
     
-    for (int i = 0; i < n && arr[i] <= res; i++){
+    for (int i = 0; i < n; i++){
+        if(arr[i] > res)
+            return res;
         res = res + arr[i];
     }
   
