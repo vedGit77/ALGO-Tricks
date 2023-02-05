@@ -19,9 +19,9 @@ int main()
 	if (found != string::npos)
 		cout << "Next occurrence is " << found << endl;
 	
-	found = s1.find(s2, found+2);
+	found = s1.find(s2, found+2);   //IMP-5 : found+2 for next to next occurrence 
 	if(found != string::npos)
-		cout << "Next occurrence is " << found << endl;
+		cout << "Next to next occurrence is " << found << endl;
 
 	return 0;
 }
@@ -30,3 +30,4 @@ int main()
 // O/P:
 // First occurrence is 0
 // Next occurrence is 8
+// Next to next occurrence is 15
