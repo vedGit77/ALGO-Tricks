@@ -3,7 +3,7 @@
 // IMP => BUT KMP IS BETTER
 
 // Time complexiy: KMP = O(N)
-// 	      : str.find() = O(N*M)....size of strings is N and M
+// 	         : str.find() = O(N*M)....size of strings is N and M
 
 
 int main()
