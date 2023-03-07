@@ -40,20 +40,20 @@ bool isPossible(int arr[], int n, int m, int curr_min)
 	int studentsRequired = 1;
 	int curr_sum = 0;
 
-	// iterate over all books
+	// iterate over all books => check by normal brute force
 	for (int i = 0; i < n; i++) {
 		
-		if (arr[i] > curr_min)
+		if (arr[i] > curr_min)   //obvio
 			return false;
 
-		if (curr_sum + arr[i] > curr_min) 
+		if (curr_sum + arr[i] > curr_min)   
 		{
 
 			studentsRequired++;
 
 			curr_sum = arr[i];
 
-			if (studentsRequired > m)
+			if (studentsRequired > m)   //obvio
 				return false;
 		}
 		else
