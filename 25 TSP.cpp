@@ -73,11 +73,11 @@
 
 	for(int city=0; city<n; city++)
 	{
-	     if( (mask&(1<<city))==0)  //means NOT visited
+	     if( (mask&(1<<city)) == 0 )  //means NOT visited
 	     {
-		    int temp= cost[curr][city] + rec(city, cost, mask|(1<<city), n, dp);   //make thsi city visited in our mask   //add cost[curr][city]
+		    int temp = cost[curr][city] + rec(city, cost, mask|(1<<city), n, dp);   //make thsi city visited in our mask   //add cost[curr][city]
 
-		    res=min(res,temp);
+		    res = min(res,temp);
 	     }
 	}
 
