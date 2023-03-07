@@ -51,13 +51,6 @@
 // For maintaining the subsets we can use the bitmasks to represent the remaining nodes in our subset. 
 // Since bits are faster to operate and there are only few nodes in graph, bitmasks is better to use.
 
-// For example: –  
-// 10100 represents node 2 and node 4 are left in set to be processed
-// 010010 represents node 1 and 4 are left in subset.
-
-// NOTE:- ignore the 0th bit since our graph is 1-based
-
-
 
 // For DP:
 // Time Complexity : O(n^2 * 2^n) 
@@ -68,111 +61,21 @@
 
 
 
-
-
-// there are four nodes in example graph (graph is 1-based)
-const int n = 4;
-// give appropriate maximum to avoid overflow
-const int MAX = 1000000;
-
-// dist[i][j] represents shortest distance to go from i to j
-// this matrix can be calculated for any given graph using all-pair shortest path algorithms
-// notice this matrix has 1st row and column = ALL zeroes => because graph is 1-based
-int dist[n + 1][n + 1] = {
-	{ 0, 0, 0, 0, 0 }, 
-	{ 0, 0, 10, 15, 20 },
-	{ 0, 10, 0, 25, 25 }, 
-	{ 0, 15, 25, 0, 30 },
-	{ 0, 20, 25, 30, 0 },
-};
-
-// memoization for top down recursion
-int memo[n + 1][1 << (n + 1)];
-
-int fun(int i, int mask)
-{
-	// base case
-	// if only ith bit and 1st bit is set in our mask,
-	// it implies we have visited all other nodes already
-	if (mask == ((1 << i) | 3))
-		return dist[1][i];
-	
-	// memoization
-	if (memo[i][mask] != 0)
-		return memo[i][mask];
-
-	int res = MAX; // result of this sub-problem
-
-	// we have to travel all nodes j in mask and end the path at ith node 
-	// so for every node j in mask, recursively calculate cost of travelling all nodes in mask except i 
-	// and then travel back from node j to node i taking the shortest path 
-	// take the minimum of all possible j nodes
-
-	for (int j = 1; j <= n; j++)
-	{
-		if ((mask & (1 << j)) && j != i && j != 1)   //not visited && j!=1 && j!=i
-		{
-			int cc = fun(j, mask & (~(1 << i))) + dist[j][i];  // mask & (~(1 << i))  => basically remove i from the mask => mark i as visited
-			res = min( res, cc );
-		}
-	}
-	
-	return memo[i][mask] = res;
-}
-
-
-int main()
-{
-	int ans = MAX;
-	for (int i = 1; i <= n; i++){
-		// go from node 1 => visiting all nodes in between => to i => then return from i => taking the shortest route to 1
-		// (1 << (n + 1)) - 1 => this is the INITIAL mask
-		
-		int b = fun(i, (1 << (n + 1)) - 1) + dist[i][1];
-		ans = min( ans, b );
-	}
-
-	printf("The cost of most efficient tour = %d", ans);
-
-	return 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  int rec(int curr, vector<vector<int>>&cost, int mask, int n,vector<vector<int>>&dp)
 {
-	if(mask== ((1<<n)-1))
-	      return cost[curr][0];
+	if(mask == ((1<<n)-1))  //all visited
+	      return cost[curr][0];  // curr->0 ka return karo
 
 	if(dp[curr][mask]!=-1)
 		return dp[curr][mask];
 
 	int res=INT_MAX;
 
-	for(int city=0;city<n;city++)
+	for(int city=0; city<n; city++)
 	{
-	     if( (mask&(1<<city))==0)
+	     if( (mask&(1<<city))==0)  //means NOT visited
 	     {
-		    int temp= cost[curr][city]+ rec(city,cost,mask|(1<<city),n,dp);
+		    int temp= cost[curr][city] + rec(city, cost, mask|(1<<city), n, dp);   //make thsi city visited in our mask   //add cost[curr][city]
 
 		    res=min(res,temp);
 	     }
@@ -180,9 +83,11 @@ int main()
 
 	return dp[curr][mask] = res;
 }
-int total_cost(vector<vector<int>>cost){
+
+int total_cost(vector<vector<int>>cost){  //given cost vector... cost[i,j] = cost of moving from city i to j => NOTE: cost[i][j] != cost[j][i] (may OR may not)
 	int n=cost.size();
-	vector<vector<int>>dp(n, vector<int>((1<<n),-1));
-	int mask=1;
-	return rec(0,cost,mask,n,dp);
+	vector<vector<int>>dp(n, vector<int>((1<<n),-1));  //dp[curr_city][mask]  
+	
+	int mask=1;  // initially...means we have visited city_0
+	return rec(0,cost,mask,n,dp);  //we assume we start from city_0, and return back to it
 }
