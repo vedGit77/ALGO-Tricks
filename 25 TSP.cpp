@@ -88,6 +88,6 @@ int total_cost(vector<vector<int>>cost){  //given cost vector... cost[i,j] = cos
 	int n=cost.size();
 	vector<vector<int>>dp(n, vector<int>((1<<n),-1));  //dp[curr_city][mask]  
 	
-	int mask=1;  // initially...means we have visited city_0
+	int mask=1;  // initially...means we have visited city_0 ... say we have 4 cities ... then mask initially = 0001
 	return rec(0,cost,mask,n,dp);  //we assume we start from city_0, and return back to it
 }
