@@ -138,3 +138,51 @@ int main()
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ int rec(int curr, vector<vector<int>>&cost, int mask, int n,vector<vector<int>>&dp)
+{
+	if(mask== ((1<<n)-1))
+	      return cost[curr][0];
+
+	if(dp[curr][mask]!=-1)
+		return dp[curr][mask];
+
+	int res=INT_MAX;
+
+	for(int city=0;city<n;city++)
+	{
+	     if( (mask&(1<<city))==0)
+	     {
+		    int temp= cost[curr][city]+ rec(city,cost,mask|(1<<city),n,dp);
+
+		    res=min(res,temp);
+	     }
+	}
+
+	return dp[curr][mask] = res;
+}
+int total_cost(vector<vector<int>>cost){
+	int n=cost.size();
+	vector<vector<int>>dp(n, vector<int>((1<<n),-1));
+	int mask=1;
+	return rec(0,cost,mask,n,dp);
+}
