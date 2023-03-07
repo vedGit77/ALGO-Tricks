@@ -110,7 +110,7 @@ int fun(int i, int mask)
 
 	for (int j = 1; j <= n; j++)
 	{
-		if ((mask & (1 << j)) && j != i && j != 1)   //not visites && j!=1 && j!=i
+		if ((mask & (1 << j)) && j != i && j != 1)   //not visited && j!=1 && j!=i
 		{
 			int cc = fun(j, mask & (~(1 << i))) + dist[j][i];  // mask & (~(1 << i))  => basically remove i from the mask => mark i as visited
 			res = min( res, cc );
