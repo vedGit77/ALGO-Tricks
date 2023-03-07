@@ -1,14 +1,16 @@
 // Given the number of pages in N different books and M students.
 // The books are arranged in ascending order of the number of pages. 
 // Every student is assigned to read some consecutive books. 
-// The task is to assign books in such a way that the maximum number of pages assigned to a student is minimum. 
+// The task is to assign ALL books in such a way that the maximum number of pages assigned to a student is minimum. 
   
 
 
 
 // IMP: N books => each book ka pages are given => sort them in ascending order
 //    : M students
+//    : each student MUST have atleast 1 book
 //    : student MUST read CONSECUTIVE books
+//    : we MUST distribute ALL books
 
 
 
@@ -26,6 +28,8 @@
 
 
 
+
+
 // approach is binary search
 
 
@@ -38,93 +42,60 @@ bool isPossible(int arr[], int n, int m, int curr_min)
 
 	// iterate over all books
 	for (int i = 0; i < n; i++) {
-		// check if current number of pages are greater
-		// than curr_min that means we will get the result
-		// after mid no. of pages
+		
 		if (arr[i] > curr_min)
 			return false;
 
-		// count how many students are required
-		// to distribute curr_min pages
-		if (curr_sum + arr[i] > curr_min) {
-			// increment student count
+		if (curr_sum + arr[i] > curr_min) 
+		{
+
 			studentsRequired++;
 
-			// update curr_sum
 			curr_sum = arr[i];
 
-			// if students required becomes greater
-			// than given no. of students,return false
 			if (studentsRequired > m)
 				return false;
 		}
-
-		// else update curr_sum
 		else
+		{
 			curr_sum += arr[i];
+		}
 	}
+	
 	return true;
 }
 
 // function to find minimum pages
 int findPages(int arr[], int n, int m)
 {
-	long long sum = 0;
-
-	// return -1 if no. of books is less than
-	// no. of students
-	if (n < m)
+	if (n < m) 	 // return -1 if no. of books is less than no. of students
 		return -1;
-	int mx = INT_MIN;
+	
+	long long sum = 0;  // to Count total number of pages => upper-limit for binary search 
+	int mx = INT_MIN;   // book with max pages => kisi na kisi student ko assign hogi => lower-limit for binary search
 
-	// Count total number of pages
 	for (int i = 0; i < n; i++) {
 		sum += arr[i];
 		mx = max(mx, arr[i]);
 	}
 
-	// initialize start as 0 pages and end as
-	// total pages
 	int start = mx, end = sum;
 	int result = INT_MAX;
 
-	// traverse until start <= end
-	while (start <= end) {
-		// check if it is possible to distribute
-		// books by using mid as current minimum
+	while (start <= end) 
+	{
 		int mid = (start + end) / 2;
+		
 		if (isPossible(arr, n, m, mid)) {
-			// update result to current distribution
-			// as it's the best we have found till now.
+			
 			result = mid;
 
-			// as we are finding minimum and books
-			// are sorted so reduce end = mid -1
-			// that means
 			end = mid - 1;
-		}
-
-		else
-			// if not possible means pages should be
-			// increased so update start = mid + 1
+		}else{
 			start = mid + 1;
+		}
 	}
 
-	// at-last return minimum no. of pages
 	return result;
 }
 
-// Drivers code
-int main()
-{
-	// Number of pages in books
-	int arr[] = { 12, 34, 67, 90 };
-	int n = sizeof arr / sizeof arr[0];
-	int m = 2; // No. of students
-
-	cout << "Minimum number of pages = "
-		<< findPages(arr, n, m) << endl;
-	return 0;
-}
-
-// This code is contributed by Aditya Kumar (adityakumar129)
