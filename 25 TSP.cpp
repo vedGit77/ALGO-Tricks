@@ -109,8 +109,13 @@ int fun(int i, int mask)
 	// take the minimum of all possible j nodes
 
 	for (int j = 1; j <= n; j++)
-		if ((mask & (1 << j)) && j != i && j != 1)
-			res = min(res, fun(j, mask & (~(1 << i))) + dist[j][i]);
+	{
+		if ((mask & (1 << j)) && j != i && j != 1)   //not visites && j!=1 && j!=i
+		{
+			int cc = fun(j, mask & (~(1 << i))) + dist[j][i];  // mask & (~(1 << i))  => basically remove i from the mask => mark i as visited
+			res = min( res, cc );
+		}
+	}
 	
 	return memo[i][mask] = res;
 }
@@ -121,7 +126,10 @@ int main()
 	int ans = MAX;
 	for (int i = 1; i <= n; i++){
 		// go from node 1 => visiting all nodes in between => to i => then return from i => taking the shortest route to 1
-		ans = min(ans, fun(i, (1 << (n + 1)) - 1) + dist[i][1]);
+		// (1 << (n + 1)) - 1 => this is the INITIAL mask
+		
+		int b = fun(i, (1 << (n + 1)) - 1) + dist[i][1];
+		ans = min( ans, b );
 	}
 
 	printf("The cost of most efficient tour = %d", ans);
