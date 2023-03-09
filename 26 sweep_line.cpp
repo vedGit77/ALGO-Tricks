@@ -81,7 +81,7 @@ long closestPair(vector<pair<int, int> > coordinates, int n)
 		{
 			pair<int, int> val = *p;
 			
-			long dis = (v[i].first - val.first)*(v[i].first - val.first) + (v[i].second - val.second)*(v[i].second - val.second);  //under-root nahi liya => since we want coordinates => no need to return distance
+			long dis = (v[i].first - val.first)*(v[i].first - val.first) + (v[i].second - val.second)*(v[i].second - val.second);  //under-root nahi liya => since we want coordinates 
 
 			if (d > dis)
 				d = dis;
