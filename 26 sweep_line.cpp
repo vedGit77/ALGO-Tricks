@@ -74,7 +74,7 @@ long closestPair(vector<pair<int, int> > coordinates, int n)
 		auto l = st.lower_bound({ v[i].first - d, v[i].second - d });  //lower -> (x-d, y-d)
 		auto r = st.upper_bound({ v[i].first, v[i].second + d });    //upper -> (x,y+d)
 		
-		if (l == st.end())
+		if (l == st.end())   // no such point in range
 			continue;
 
 		for (auto p = l; p != r; p++)  //IMP => p!=r
