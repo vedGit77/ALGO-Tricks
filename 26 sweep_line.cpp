@@ -5,7 +5,7 @@
 
 // We will discuss these problems for understanding:
 // 1. Closest Pair
-
+// 2. Max Population
 
 
 
@@ -93,3 +93,53 @@ long closestPair(vector<pair<int, int> > coordinates, int n)
 	return d;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 2. Max Population:
+
+// given => 2D integer array logs => logs[i] = [birth_i, death_i] indicates the birth and death years of the ith person.
+// The population of some year x is the number of people alive during that year. 
+// The ith person => counted in year x's population if => x is in the inclusive range [birthi, deathi - 1]
+// NOTE => person is NOT counted in the year that they die
+// Return the earliest year with the maximum population
+
+// Example:
+// logs = [[1950,1961],[1960,1971],[1970,1981]]
+// Output: 1960
+
+int maximumPopulation(vector<vector<int>>& logs) {
+	unordered_map<int,int>m;
+	int mini = INT_MAX, maxi = INT_MIN;
+
+	for(int i=0;i<logs.size();i++){
+	    m[logs[i][0]]++;
+	    m[logs[i][1]]--;
+	    mini = min(mini, logs[i][0]);
+	    maxi = max(maxi, logs[i][1]);
+	}
+
+	int cur=0, ans=0, ans_year = mini;
+
+	for(int i=mini; i<maxi; i++){
+	    if(m.find(i) != m.end())
+		cur += m[i];
+
+	    if(ans < cur){
+		ans = cur;
+		ans_year = i;
+	    }
+	}
+
+	return ans_year;
+}
