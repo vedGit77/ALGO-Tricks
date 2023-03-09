@@ -120,16 +120,17 @@ long closestPair(vector<pair<int, int> > coordinates, int n)
 
 int maximumPopulation(vector<vector<int>>& logs) {
 	unordered_map<int,int>m;
-	int mini = INT_MAX, maxi = INT_MIN;
+	int mini = INT_MAX, maxi = INT_MIN;  //smallest and largest year in logs array
 
-	for(int i=0;i<logs.size();i++){
+	for(int i=0;i<logs.size();i++)   //loop for sweep line
+	{
 	    m[logs[i][0]]++;
 	    m[logs[i][1]]--;
 	    mini = min(mini, logs[i][0]);
 	    maxi = max(maxi, logs[i][1]);
 	}
 
-	int cur=0, ans=0, ans_year = mini;
+	int cur=0, ans=0, ans_year = 0;
 
 	for(int i=mini; i<maxi; i++){
 	    if(m.find(i) != m.end())
