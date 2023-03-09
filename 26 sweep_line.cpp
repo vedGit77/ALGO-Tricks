@@ -34,42 +34,25 @@
 // NOTE => at any instance, the number of points under consideration is O(1)(there can be atmost 5 points around a point under consideration => excluding the point itself)
 
 
-#define px second
-#define py first
-typedef pair<long long, long long> pairll;
-pairll pnts [MAX];
-int compare(pairll a, pairll b)
-{ 
-        return a.px<b.px; 
-}
-double closest_pair(pairll pnts[],int n)
-{
-        sort(pnts,pnts+n,compare);
-        double best=INF;
-        set<pairll> box;
-        box.insert(pnts[0]);
-        int left = 0;
-        for (int i=1;i<n;++i)
-        {
-            while (left<i && pnts[i].px-pnts[left].px > best)
-                box.erase(pnts[left++]);
-            for(typeof(box.begin()) it=box.lower_bound(make_pair(pnts[i].py-best, pnts[i].px-best));it!=box.end() && pnts[i].py+best>=it->py;it++)
-                best = min(best, sqrt(pow(pnts[i].py - it->py, 2.0)+pow(pnts[i].px - it->px, 2.0)));
-            box.insert(pnts[i]);
-        }
-        return best;
-}
+// Time Complexity: O(N * log(N)) => since lower_bound / upper_bound works on binary search
+// Auxiliary Space: O(N)
 
 
 
+// PRE-REQUISITE:
 
+// In Pairs => lower_bound() for pair(x, y) => return an iterator => whose:   
+// 1. first value > x  
+// 	OR
+// 2. first value == x && second value >= y
+// If the above-mentioned criteria are not met => returns an iterator to the index which is out of the vectors of pairs. 
 
-
-
-
-
-
-
+// In Pairs => upper_bound() for pair(x, y) => return an iterator => whose:
+// 1. first value > x
+// 	OR
+// 2. First value == x && second value > y
+	
+	
 long closestPair(vector<pair<int, int> > coordinates, int n)
 {
 	int i;
@@ -88,19 +71,22 @@ long closestPair(vector<pair<int, int> > coordinates, int n)
 
 	for (i = 1; i < n; i++) //start with i=1, since set mei already i=0 wala point hai
 	{  
-		auto l = st.lower_bound({ v[i].first - d, v[i].second - d });
-		auto r = st.upper_bound({ v[i].first, v[i].second + d });
+		auto l = st.lower_bound({ v[i].first - d, v[i].second - d });  //lower -> (x-d, y-d)
+		auto r = st.upper_bound({ v[i].first, v[i].second + d });    //upper -> (x,y+d)
+		
 		if (l == st.end())
 			continue;
 
-		for (auto p = l; p != r; p++) {
+		for (auto p = l; p != r; p++)  //IMP => p!=r
+		{
 			pair<int, int> val = *p;
-			long dis = (v[i].first - val.first)* (v[i].first - val.first)+ (v[i].second - val.second)* (v[i].second - val.second);
+			
+			long dis = (v[i].first - val.first)*(v[i].first - val.first) + (v[i].second - val.second)*(v[i].second - val.second);  //under-root nahi liya => since we want coordinates => no need to return distance
 
-			// Updating the minimum distance dis
 			if (d > dis)
 				d = dis;
 		}
+		
 		st.insert({ v[i].first, v[i].second });
 	}
 
