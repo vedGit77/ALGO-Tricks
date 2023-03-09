@@ -24,12 +24,12 @@
 
 // Optimized : sweep line
 // 1. sort the points in x direction => as we want our line to move towards right.
-// 2. suppose we have processed the points from 1 to N-1, and let h be the shortest distance we have got so far. 
-// 3. For Nth point, we want to find points whose distance from Nth point is <= h.
-// 4. we can only go till h distance from x_n to find such point. => x_n ke loiye ONLY leftwards (since we are considering points [1,n-1])
-// 5. in the y direction, we can go in h distance upwards and h distance downwards => for y_n => upar and neeche both 
-// 6. So, all such points => x coordinate lie in [x_n - h, x_n] && y coordinates lie in [y_n - h, y_n + h]=> what we are concerned with
-// 7. All points in the set with x coordinates less than (x_n-h) are to be deleted . 
+// 2. suppose we have processed the points from 1 to N-1, and let d be the shortest distance we have got so far. 
+// 3. For Nth point, we want to find points whose distance from Nth point is <= d.
+// 4. we can only go till d distance from x_n to find such point. => x_n ke loiye ONLY leftwards (since we are considering points [1,n-1])
+// 5. in the y direction, we can go in d distance upwards and d distance downwards => for y_n => upar and neeche both 
+// 6. So, all such points => x coordinate lie in [x_n - d, x_n] && y coordinates lie in [y_n - d, y_n + d]=> what we are concerned with
+// 7. All points in the set with x coordinates less than (x_n-d) are to be deleted . 
 // 8. After this processing, we'll add the Nth point to the set.
 // NOTE => at any instance, the number of points under consideration is O(1)(there can be atmost 5 points around a point under consideration => excluding the point itself)
 
@@ -73,23 +73,21 @@ double closest_pair(pairll pnts[],int n)
 long closestPair(vector<pair<int, int> > coordinates, int n)
 {
 	int i;
-	// Vector pair to store points on plane
-	vector<pair<int, int> > v;
+	
+	vector<pair<int, int> > v;   //store points on plane
   
 	for (i = 0; i < n; i++)
-		v.push_back({ coordinates[i].first,	coordinates[i].second });
+		v.push_back({ coordinates[i].first, coordinates[i].second });
 
-	// Sort them according to their x-coordinates
-	sort(v.begin(), v.end());
+	sort(v.begin(), v.end());  // Sort them according to their x-coordinates
 
-	// Minimum distance b/w points seen so far
-	long d = INT_MAX;
+	long d = INT_MAX;  // Minimum distance b/w points seen so far
 
-	// Keeping the points in increasing order
 	set<pair<int, int> > st;
 	st.insert({ v[0].first, v[0].second });
 
-	for (i = 1; i < n; i++) {
+	for (i = 1; i < n; i++) //start with i=1, since set mei already i=0 wala point hai
+	{  
 		auto l = st.lower_bound({ v[i].first - d, v[i].second - d });
 		auto r = st.upper_bound({ v[i].first, v[i].second + d });
 		if (l == st.end())
