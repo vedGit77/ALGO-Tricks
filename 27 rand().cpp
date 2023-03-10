@@ -6,7 +6,7 @@ Here { 0 <= a < RAND_MAX } -> where RAND_MAX is a large value ... varies with im
 
 
 int a = rand()%n;
-Here { 0 <= a < n } -> to get in range [0,n)
+Here { 0 <= a <= n-1 } -> to get in range [0,n)
 
                                         
 int range = maxi - mini + 1;
