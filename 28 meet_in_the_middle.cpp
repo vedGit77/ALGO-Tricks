@@ -32,13 +32,13 @@
 typedef long long int ll;
 ll X[2000005],Y[2000005];
 
-// Find all possible sum of elements of a[] and store in x[]
+// Find all possible sum of elements of a[] and store in x[] 
 void calcsubarray(ll a[], ll x[], int n, int c)
 {
-	for (int i=0; i<(1<<n); i++)
+	for (int i=0; i<(1<<n); i++)  // i is from [0, 2^n) => all possible permutations
 	{
 		ll s = 0;
-		for (int j=0; j<n; j++)
+		for (int j=0; j<n; j++)  //this loop => basically adds all those a[j+c] => where the jth bit is set in 'i' => since set bit in 'i' denotes if that element is taken in our sum
 			if (i & (1<<j))
 				s += a[j+c];
 		x[i] = s;
