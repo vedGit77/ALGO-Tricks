@@ -33,9 +33,9 @@ void printPowerSet(char* set, int set_size)
 	int counter, j;
 
 	// Run from counter 000..0 to 111..1
-	for (counter = 0; counter<pow_set_size; counter++) 
+	for (counter = 0; counter<pow_set_size; counter++)  //total number of elements in power_set => loop runs that many number of times
 	{
-		for (j = 0; j < set_size; j++) 
+		for (j = 0; j < set_size; j++)  //this loop prints a particular element of power set
 		{
 			if (counter & (1 << j))
 				cout << set[j];
