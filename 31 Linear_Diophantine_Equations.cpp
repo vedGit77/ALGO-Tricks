@@ -1,15 +1,24 @@
-Before Linear Diophantine Equations, some prerequisite:
+// Before Linear Diophantine Equations, some prerequisite:
 
-1. Euclidean algorithm (GCD):
+
+
+// 1. Euclidean algorithm (GCD):
   
-  int gcd(int a, int b)
-  {
-      if (a == 0)
-          return b;
-      return gcd(b % a, a);
-  }
+//   int gcd(int a, int b)
+//   {
+//       if (a == 0)
+//           return b;
+//       return gcd(b % a, a);
+//   }
 
 
-2. Extended Euclidean Algorithm: 
-  finds integer coefficients x and y such that:
-  ax + by = gcd(a, b) 
+
+// 2. Extended Euclidean Algorithm: 
+
+//   finds integer coefficients x and y such that:
+//   ax + by = gcd(a, b) 
+    
+//   # NOTE: for the above eqn, its guaranteed that x,y integers exist
+    
+    
+    
