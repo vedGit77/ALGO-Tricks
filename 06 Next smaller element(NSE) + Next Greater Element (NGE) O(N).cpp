@@ -1,6 +1,8 @@
 // A Stack based C++ program to find next smaller element for all array elements
 // Time and space: O(N)
 
+// we are writing code for NSE => almost similar approach for NGE
+
 #include <bits/stdc++.h>
 using namespace std;
 
