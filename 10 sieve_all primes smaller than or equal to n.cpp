@@ -1,5 +1,7 @@
 //Sieve of Eratosthenes
 
+// time: n*log(log(n))
+
 void SieveOfEratosthenes(int n)
 {
     bool prime[n + 1];
