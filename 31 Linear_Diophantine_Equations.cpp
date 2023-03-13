@@ -93,10 +93,10 @@ int extendedEuclideanAlgorithm(int a, int b, int &x, int &y){  //x and y => pass
 
 // Linear Diophantine equation: ( ax + by = c ) -> given a,b,c -> find (x,y)
 
-//Now this has 2 parts -> particular and general sol
+//Now this has 2 parts -> particular/initial sol and general sol
 
 
-// 1. PARTICULAR SOL:
+// 1. PARTICULAR SOL. or INITIAL SOL.:
 // Find GCD of a and b
 // if ( c % GCD(a ,b) == 0 ) => ONLY then sol. exists!!!  => ie. c is a multiple of gcd
 
@@ -162,4 +162,15 @@ int main(void)
 
 
 
-        
+
+
+// 2. General Sol.
+ 
+// Let g = GCD(a,b)
+// Now-> modifying equation ->  [ a*(x + b/g) + b*(y - a/g) = c ] -> since a*b/g cancels out
+
+// Thus, x_general = x + k*b/g  --- where k is any integer
+//       y_general = y - k*a/g  --- where k is any integer
+      
+// so basically find (x,y) -> get (x_general, y_general)
+
