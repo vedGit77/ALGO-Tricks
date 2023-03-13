@@ -43,6 +43,40 @@
 //   y = x1
 
 // Now, we can get x,y using a base case in recursion => when a==0 => GCD(a,b)==b => thus x==anything, y==1 => necessarily 
+
+
+
+int extendedEuclideanAlgorithm(int a, int b, int &x, int &y){
+        if(b==0){
+            x=1;
+            y=0;
+            return a;
+        }
+
+        int x1, y1;
+
+        int g = extendedEuclideanAlgorithm(b, a%b, x1, y1);
+
+        x = y1;
+        y = x1 - (a/b)*y1;
+
+        return g;
+    }
+
+    
+
+    vector<int> gcd(int a, int b){
+        vector<int> res;
+        int x, y;
+
+        int GCD = extendedEuclideanAlgorithm(a, b, x, y);
+
+        res.push_back(x);
+        res.push_back(y);
+
+        return res;
+    }
+
     
     
     
