@@ -56,9 +56,9 @@ int extendedEuclideanAlgorithm(int a, int b, int &x, int &y){  //x and y => pass
 
       int x1, y1;
 
-      int g = extendedEuclideanAlgorithm(b, a%b, x1, y1);
+      int g = extendedEuclideanAlgorithm(b, a%b, x1, y1);  //see parameters -> (a, b, &x, &y) => (b, a%b, x1, y1)
 
-      x = y1;
+      x = y1;  //as per the derivation above
       y = x1 - (a/b)*y1;
 
       return g;
