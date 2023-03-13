@@ -46,37 +46,36 @@
 
 
 
-int extendedEuclideanAlgorithm(int a, int b, int &x, int &y){
-        if(b==0){
-            x=1;
-            y=0;
-            return a;
-        }
+//this function returns GCD, and simultaneously updates x and y
+int extendedEuclideanAlgorithm(int a, int b, int &x, int &y){  //x and y => passed by REFERENCE
+      if(b==0){
+          x=1;  //necessarily 1
+          y=0;  //could be anything 
+          return a;
+      }
 
-        int x1, y1;
+      int x1, y1;
 
-        int g = extendedEuclideanAlgorithm(b, a%b, x1, y1);
+      int g = extendedEuclideanAlgorithm(b, a%b, x1, y1);
 
-        x = y1;
-        y = x1 - (a/b)*y1;
+      x = y1;
+      y = x1 - (a/b)*y1;
 
-        return g;
-    }
+      return g;
+  }
 
-    
 
-    vector<int> gcd(int a, int b){
-        vector<int> res;
-        int x, y;
+// main function -> returns vector {x,y} where ax+by = gcd(a,b)
+  vector<int> gcd(int a, int b){
+      vector<int> res;
+      int x, y;
 
-        int GCD = extendedEuclideanAlgorithm(a, b, x, y);
+      int GCD = extendedEuclideanAlgorithm(a, b, x, y);
 
-        res.push_back(x);
-        res.push_back(y);
+      res.push_back(x);
+      res.push_back(y);
 
-        return res;
-    }
+      return res;
+  }
 
-    
-    
-    
+        
