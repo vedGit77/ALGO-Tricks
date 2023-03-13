@@ -41,6 +41,8 @@
 //   Comparing LHS and RHS,
 //   x = y1 – (b/a)*x1
 //   y = x1
+
+// Now, we can get x,y using a base case in recursion => when a==0 => GCD(a,b)==b => thus x==anything, y==1 => necessarily 
     
     
     
