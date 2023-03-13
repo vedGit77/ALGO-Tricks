@@ -16,7 +16,7 @@ int fun(vector<int>& s)
     for (i = 0; i < sz; i++)   //for each array element
     {
         n = s[i];
-        for (j = 31; j >= 0; j--)  //IMP=> [31 ---> 0]
+        for (j = 31; j >= 0; j--)  //IMP=> [31 --to--> 0]
         {
             t[j] += (n&1);  // update t[j] by finding the last digit
             n = n>>1;
