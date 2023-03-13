@@ -54,10 +54,11 @@ int extendedEuclideanAlgorithm(int a, int b, int &x, int &y){  //x and y => pass
           return a;
       }
 
-      int x1, y1;
-
-      int g = extendedEuclideanAlgorithm(b, a%b, x1, y1);  //see parameters -> (a, b, &x, &y) => (b, a%b, x1, y1)
-
+      int g = extendedEuclideanAlgorithm(b, a%b, x, y);  //see parameters -> (a, b, &x, &y) => (b, a%b, x, y)
+  
+      int x1 = x;
+      int y1 = y;
+  
       x = y1;  //as per the derivation above
       y = x1 - (a/b)*y1;
 
@@ -77,5 +78,99 @@ int extendedEuclideanAlgorithm(int a, int b, int &x, int &y){  //x and y => pass
 
       return res;
   }
+
+
+
+
+
+
+
+
+
+// --------------------PRE-REQUISITES OVER NOW-------------------------
+
+
+
+// Linear Diophantine equation: ( ax + by = c ) -> given a,b,c -> find (x,y)
+
+//Now this has 2 parts -> particular and general sol
+
+
+// 1. PARTICULAR SOL:
+// Find GCD of a and b
+// if ( c % GCD(a ,b) == 0 ) => ONLY then sol. exists!!!  => ie. c is a multiple of gcd
+
+// Now, if sol. exists:
+// For given a and b => calculate the value of x1, y1 => and gcd using **Extended** Euclidean Algorithm.
+// Calculate the solution of the equation as follows:
+// x = x1 * ( c / gcd )
+// y = y1 * ( c / gcd )
+
+
+
+// Function to implement the extended euclid algorithm =>same as done before
+int gcd_extend(int a, int b, int& x, int& y){
+	if (b == 0) {
+		x = 1;
+		y = 0;
+		return a;
+	}
+
+  int g = gcd_extend(b, a%b, x, y);
+  
+  int x1 = x;
+  int y1 = y;
+  
+  x = y1;
+  y = x1 - (a / b) * y1;
+  
+  return g;
+}
+
+// Function to print the solutions of the given equations ax + by = c
+void print_solution(int a, int b, int c){
+	int x, y;
+  
+	if (a == 0 && b == 0) {
+		// Condition for infinite solutions
+		if (c == 0) {
+			cout<< "Infinite Solutions Exist"<< endl;
+		}
+
+		// Condition for no solutions exist
+		else {
+			cout
+				<< "No Solution exists"
+				<< endl;
+		}
+	}
+  
+	int gcd = gcd_extend(a, b, x, y);
+
+	// Condition for no solutions exist
+	if (c % gcd != 0) {
+		cout<< "No Solution exists"<< endl;
+  }else{
+		// Print the solution
+		cout << "x = " << x * (c / gcd) << ", y = " << y * (c / gcd) << endl;
+	}
+}
+
+// Driver Code
+int main(void)
+{
+	int a, b, c;
+
+	a = 4;
+	b = 18;
+	c = 10;
+
+	print_solution(a, b, c);
+	return 0;
+}
+
+
+
+
 
         
