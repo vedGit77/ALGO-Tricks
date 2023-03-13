@@ -2,11 +2,14 @@
 // every element appears k (k > 1) times EXCEPT for one, which appears p times (p >= 1  AND  p%k != 0). 
 // Find that single one. 
 
+//time : O(N)
+//space: O(1)
+
 
 
 int fun(vector<int>& s) 
 {
-    vector<int> t(32);    //array of 32 elements-> considering 32-bit integers -> stores how many times a number occurred (by incrementing elements in t by 1) -> example: number is 3 -> in binary -> 11 -> so t[31]++ and t[30]++
+    vector<int> t(32);    //array of 32 elements-> considering 32-bit integers given in ques -> stores how many times a number occurred (by incrementing elements in t by 1) -> example: number is 3 -> in binary -> 11 -> so t[31]++ and t[30]++
     int sz = s.size();
     int i, j, n;
 
