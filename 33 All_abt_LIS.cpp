@@ -42,4 +42,28 @@ int longestIncreasingSubsequence(int arr[], int n){
     
     return len;
 }
+
+
+
+
+
+
+
+// ANS_for_problem_2
+
+vector<int> fun(vector<int>&nums){
+	int n = nums.size();
+	vector<int>dp(n,1);  //initialize all dp[i]=1 => since for each element => length==1
+
+	for(int i=0;i<n;i++)
+	{
+	    for(int j=0;j<i;j++)  //NOTE: j<i
+	    {
+		if(nums[i]>nums[j])  //change dp[i] ONLY when nums[i]>nums[j]
+		    dp[i] = max(dp[i], dp[j]+1);
+	    }
+	}
+
+	return dp;
+}
     
