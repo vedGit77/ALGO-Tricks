@@ -16,7 +16,7 @@
 
 
 
-//ANS_1
+//ANS_for_problem_1
 
 int longestIncreasingSubsequence(int arr[], int n){
     
@@ -25,18 +25,17 @@ int longestIncreasingSubsequence(int arr[], int n){
     
     int len = 1;
     
-    for(int i=1; i<n; i++){
-        if(arr[i]>temp.back()){
-           // arr[i] > the last element of temp array 
-           
+    for(int i=1; i<n; i++)  //start from i=1
+    {
+        if(arr[i]>temp.back())
+	{  
            temp.push_back(arr[i]);
-           len++;
-           
+           len++;  
         } 
-        else{
-	// replacement step
+        else
+	{
             int ind = lower_bound(temp.begin(),temp.end(),arr[i]) - temp.begin();
-            temp[ind] = arr[i];
+            temp[ind] = arr[i];  //replace => DONT change len
         }
         
     }
