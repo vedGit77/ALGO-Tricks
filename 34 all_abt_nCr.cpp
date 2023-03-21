@@ -34,6 +34,9 @@ int fun(int n, int k)
 
 // Method 2: (Modular Inversion technique) => for (nCr)%m => MODULO AAYEGA since large value!
 
+// Time Complexity: O(n+r)
+// Auxiliary Space: O(r) 
+
 // 1. General formula => nCr is ( n*(n-1)*(n-2)* … *(n-r+1) ) / (r!)
 //    sometimes => overflow out of bound. 
 //    We need to find nCr mod m so that it doesn’t overflow. 
