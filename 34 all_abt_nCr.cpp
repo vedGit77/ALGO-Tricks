@@ -30,8 +30,8 @@ int fun(int n, int k)
 
 
 
- 
 
+ 
 
 
 // Method 2: using gcd
@@ -62,9 +62,7 @@ void printNcR(int n, int r)
 			// gcd of p, k
 			long long m = __gcd(p, k);
 
-			// dividing by gcd, to simplify
-			// product division by their gcd
-			// saves from the overflow
+			// dividing by gcd => saves from the overflow
 			p /= m;
 			k /= m;
 
@@ -74,7 +72,7 @@ void printNcR(int n, int r)
 
 		// k should be simplified to 1
 		// as C(n, r) is a natural number
-		// (denominator should be 1 ) .
+		// (denominator should be 1 ) 
 	}
 
 	else
@@ -83,7 +81,6 @@ void printNcR(int n, int r)
 	// if our approach is correct p = ans and k =1
 	cout << p << endl;
 }
-
 
 
 
