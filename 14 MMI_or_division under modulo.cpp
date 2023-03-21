@@ -70,8 +70,9 @@
 
 int inv(int i) 
 {
-          
-  return i <= 1 ? i : m - (long long)(m/i) * inv(m % i) % m;
+           if(i<=1)
+                      return i;
+           return  ( m - (long long)(m/i) * inv(m % i) % m );
 }
 
 
