@@ -87,5 +87,5 @@ int[0] = 0;  //initialize
 inv[1] = 1;
 
 for(int i = 2; i<m; ++i)    
-    inv[i] = m - (long long)(m/i) * inv[m%i] % m;    //same forumla => just NOT recursive
+    inv[i] = ( m - (long long)(m/i) * inv[m%i] % m );    //same forumla => just NOT recursive
 
