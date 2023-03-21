@@ -5,6 +5,8 @@
 //        : Time O(r)
 //        : Space O(1)
 
+// Drawback => for big values of n, r => products may overflow
+
 
 int fun(int n, int k)
 {
@@ -26,13 +28,74 @@ int fun(int n, int k)
 
        
 
+
+
  
 
 
 
+// Method 2: using gcd
+// Time Complexity: O(R * Log N) 
+// Auxiliary Space: O(1)
+
+// Advantage: Prevents overflow
 
 
-// Method 2: (Modular Inversion technique) => for (nCr)%m => MODULO AAYEGA since large value!
+
+void printNcR(int n, int r)
+{
+
+	// p holds the value of n*(n-1)*(n-2)...(n-r+1)
+	// k holds the value of r*(r-1)...1
+	long long p = 1, k = 1;
+
+	// C(n, r) == C(n, n-r),
+	// choosing the smaller value
+	if (n - r < r)
+		r = n - r;
+
+	if (r != 0) {
+		while (r) {
+			p *= n;
+			k *= r;
+
+			// gcd of p, k
+			long long m = __gcd(p, k);
+
+			// dividing by gcd, to simplify
+			// product division by their gcd
+			// saves from the overflow
+			p /= m;
+			k /= m;
+
+			n--;
+			r--;
+		}
+
+		// k should be simplified to 1
+		// as C(n, r) is a natural number
+		// (denominator should be 1 ) .
+	}
+
+	else
+		p = 1;   //when r==0
+
+	// if our approach is correct p = ans and k =1
+	cout << p << endl;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// Method 3: (Modular Inversion technique) => for (nCr)%m => MODULO AAYEGA since large value!
 
 // Time Complexity: O(n+r)
 // Auxiliary Space: O(r) 
