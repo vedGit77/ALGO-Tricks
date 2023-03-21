@@ -5,7 +5,7 @@
 //          => Time: O(log m)
 
 // Method 2 => Euclidean Division 
-//          => works EVEN when m is NOT prime 
+//          => works ONLY when m is prime 
 //          => Time: similar to O(log m)
 //          => Method 2 can be extended to find multiplicative inverse for integers in range [0, n-1] in time O(n)
 
