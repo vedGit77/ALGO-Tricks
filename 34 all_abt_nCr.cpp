@@ -76,7 +76,7 @@ int binomialCoeff(int n, int r)
 	// from 2 to r with respect to m
 	// here m = 1000000007
 	for (int i = 2; i <= r; i++) 
-		inv[i] = ( m - (m / i) * inv[m % i] % m );
+		inv[i] = ( m - ( (m / i) * inv[m % i] ) % m );
 
 
 	int ans = 1;
