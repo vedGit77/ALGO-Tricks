@@ -7,7 +7,7 @@
 // Method 2 => Euclidean Division 
 //          => works EVEN when m is NOT prime 
 //          => Time: similar to O(log m)
-//          => Method 2 can be extended to find multiplicative inverse for integers in range [0,n] in time O(n)
+//          => Method 2 can be extended to find multiplicative inverse for integers in range [0, n-1] in time O(n)
 
 
 
@@ -65,15 +65,27 @@
 
 
 
-// Method_2 => for single pair => {A,M} => ie. we want A^-1 => M is for taking modulo
+// Method_2 => for single pair => {i,M} => ie. we want i^-1 => M is for taking modulo
 
 
-int inv(int i) 
+int inv(int i)   //recursive func
 {
            if(i<=1)
                       return i;
-           return  ( m - (long long)(m/i) * inv(m % i) % m );
+                      
+           return  ( m - (long long)(m/i) * inv(m % i) % m );    //rat lo!
+           
+           // formula => ( m - (m/i) * inv(m%i)%m )
 }
 
 
+
+// Method_2_extended => find multiplicative inverse for integers in range [0, r-1] in time O(r)
+
+vector<long long int>inv(r, 0);
+int[0] = 0;  //initialize
+inv[1] = 1;
+
+for(int i = 2; i<m; ++i)    
+    inv[i] = m - (long long)(m/i) * inv[m%i] % m;    //same forumla => just NOT recursive
 
