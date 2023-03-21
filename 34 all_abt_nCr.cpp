@@ -44,11 +44,11 @@ int fun(int n, int k)
 
 // 3. and for the 1/r! part
 //    find the modular inverse of EVERY number from 1 to r. 
-//    Then use the same formula above with a modular inverse of 1 to r. We can find modular inverse in O(r) time using  the formula, 
+//    We can find modular inverse in O(r) time using  the formula =>
 
-inv[1] = 1
-inv[i] = − ⌊m/i⌋ * inv[m mod i] mod m
-To use this formula, m has to be a prime.
-In the practice problem, we need to show the answer with modulo 1000000007 which is a prime. 
+//    inv[1] = 1
+//    inv[i] = (m − (m/i) * inv[m%i]%m)        => done this before in MMI wali file
 
-So, this technique will work.
+//    To use this formula, m has to be a prime.
+//    In the practice problem, we need to show the answer with modulo 1000000007 which is a prime. 
+//    So, this technique will work.
