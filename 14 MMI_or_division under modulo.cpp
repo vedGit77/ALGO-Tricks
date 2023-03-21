@@ -75,7 +75,9 @@ int inv(int i)   //recursive func
                       
            return  ( m - (long long)(m/i) * inv(m % i) % m );    //rat lo!
            
-           // formula => ( m - (m/i) * inv(m%i)%m )
+           // formula => ( m - ( (m/i) * inv(m%i)%m ) )
+           //pehle multiply-> then %-> then subtract
+           
 }
 
 
