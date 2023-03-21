@@ -1,5 +1,21 @@
-Point 5 is main, others are just explanation
+// 2 methods: both are good
 
+// Mehtod 1 => Binary exponentiation 
+//          => works ONLY when m is prime
+//          => Time: O(log m)
+
+// Method 2 => Euclidean Division 
+//          => works EVEN when m is NOT prime 
+//          => Time: similar to O(log m)
+//          => Method 2 can be extended to find multiplicative inverse for integers in range [0,n] in time O(n)
+
+
+
+
+// Method_1:
+
+
+// Point 5 is main, others are just explanation
 
 
 
@@ -39,5 +55,17 @@ Point 5 is main, others are just explanation
    
    
    
-6. Till now we discussed when M is prime => when NON prime => use extended Eucleidean Algo => NO need to do it!
+6. Till now we discussed when M is prime => when NON prime => use extended Eucleidean Division
+
+
+
+
+
+
+
+
+
+// Method_2:
+
+
 
