@@ -156,3 +156,100 @@ int binomialCoeff(int n, int r)
 	return ans;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+// Method 4: (nCr)%p for q queries 
+
+// N <= 10^6
+// R <= 10^6
+// p is a prime number
+
+// query => p is fixed => n,r are varying
+
+// Time Complexity: O(N) for precomputing and O(1) for every query
+// Auxiliary Space: O(N) 
+
+
+
+const int N = 1000001;  //10^6 +1
+
+// array to store inverse of 1 to N
+ll factorialNumInverse[N + 1];
+
+// array to precompute inverse of 1! to N!
+ll naturalNumInverse[N + 1];
+
+// array to store factorial of first N numbers
+ll fact[N + 1];
+
+// Function to precompute inverse of numbers
+void InverseofNumber(ll p)
+{
+	naturalNumInverse[0] = naturalNumInverse[1] = 1;
+	for (int i = 2; i <= N; i++)
+		naturalNumInverse[i] = naturalNumInverse[p % i] * (p - p / i) % p;
+}
+// Function to precompute inverse of factorials
+void InverseofFactorial(ll p)
+{
+	factorialNumInverse[0] = factorialNumInverse[1] = 1;
+
+	// precompute inverse of natural numbers
+	for (int i = 2; i <= N; i++)
+		factorialNumInverse[i] = (naturalNumInverse[i] * factorialNumInverse[i - 1]) % p;
+}
+
+// Function to calculate factorial of 1 to N
+void factorial(ll p)
+{
+	fact[0] = 1;
+
+	// precompute factorials
+	for (int i = 1; i <= N; i++) {
+		fact[i] = (fact[i - 1] * i) % p;
+	}
+}
+
+// Function to return nCr % p in O(1) time
+ll Binomial(ll N, ll R, ll p)
+{
+	// n C r = n!*inverse(r!)*inverse((n-r)!)
+	ll ans = ((fact[N] * factorialNumInverse[R])
+			% p * factorialNumInverse[N - R])
+			% p;
+	return ans;
+}
+
+// Driver Code
+int main()
+{
+	// Calling functions to precompute the
+	// required arrays which will be required
+	// to answer every query in O(1)
+	ll p = 1000000007;
+	InverseofNumber(p);
+	InverseofFactorial(p);
+	factorial(p);
+
+	// 1st query
+	ll N = 15;
+	ll R = 4;
+	cout << Binomial(N, R, p) << endl;
+
+	// 2nd query
+	N = 20;
+	R = 3;
+	cout << Binomial(N, R, p) << endl;
+
+	return 0;
+}
+
