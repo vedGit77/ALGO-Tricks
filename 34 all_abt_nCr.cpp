@@ -196,8 +196,9 @@ void InverseofNumber(ll p)
 {
 	naturalNumInverse[0] = naturalNumInverse[1] = 1;
 	for (int i = 2; i <= N; i++)
-		naturalNumInverse[i] = naturalNumInverse[p % i] * (p - p / i) % p;
+		naturalNumInverse[i] = p - (p/i) * naturalNumInverse[p % i] * % p;  //did before too
 }
+
 // Function to precompute inverse of factorials
 void InverseofFactorial(ll p)
 {
