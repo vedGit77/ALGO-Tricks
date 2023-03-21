@@ -180,12 +180,13 @@ int binomialCoeff(int n, int r)
 
 
 
-const int N = 1000001;  //10^6 +1
 
-// array to store inverse of 1 to N
-ll factorialNumInverse[N + 1];
+const int N = 1000001;
 
 // array to precompute inverse of 1! to N!
+ll factorialNumInverse[N + 1];
+
+// array to store inverse of 1 to N
 ll naturalNumInverse[N + 1];
 
 // array to store factorial of first N numbers
@@ -195,8 +196,9 @@ ll fact[N + 1];
 void InverseofNumber(ll p)
 {
 	naturalNumInverse[0] = naturalNumInverse[1] = 1;
+	
 	for (int i = 2; i <= N; i++)
-		naturalNumInverse[i] = p - (p/i) * naturalNumInverse[p % i] * % p;  //did before too
+		naturalNumInverse[i] = p - (p/i) * naturalNumInverse[p % i] % p;
 }
 
 // Function to precompute inverse of factorials
@@ -206,7 +208,7 @@ void InverseofFactorial(ll p)
 
 	// precompute inverse of natural numbers
 	for (int i = 2; i <= N; i++)
-		factorialNumInverse[i] = (naturalNumInverse[i] * factorialNumInverse[i - 1]) % p;
+		factorialNumInverse[i] = (naturalNumInverse[i] * factorialNumInverse[i - 1]) % p;    //jaise factorial nikalte hai...analogous logic => fact(i) = i*fact(i-1)
 }
 
 // Function to calculate factorial of 1 to N
@@ -224,18 +226,13 @@ void factorial(ll p)
 ll Binomial(ll N, ll R, ll p)
 {
 	// n C r = n!*inverse(r!)*inverse((n-r)!)
-	ll ans = ((fact[N] * factorialNumInverse[R])
-			% p * factorialNumInverse[N - R])
-			% p;
+	ll ans = ((fact[N] * factorialNumInverse[R])% p * factorialNumInverse[N - R])% p;
 	return ans;
 }
 
 // Driver Code
 int main()
 {
-	// Calling functions to precompute the
-	// required arrays which will be required
-	// to answer every query in O(1)
 	ll p = 1000000007;
 	InverseofNumber(p);
 	InverseofFactorial(p);
@@ -253,4 +250,3 @@ int main()
 
 	return 0;
 }
-
