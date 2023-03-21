@@ -65,7 +65,14 @@
 
 
 
-// Method_2:
+// Method_2 => for single pair => {A,M} => ie. we want A^-1 => M is for taking modulo
+
+
+int inv(int i) 
+{
+          
+  return i <= 1 ? i : m - (long long)(m/i) * inv(m % i) % m;
+}
 
 
 
