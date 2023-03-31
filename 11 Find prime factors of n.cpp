@@ -8,8 +8,8 @@ void primeFactors(int n)
     while(n>1)
     {
         if(n%c==0){
-        cout<<c<<" ";
-        n/=c;
+            cout<<c<<" ";
+            n/=c;
         }
         else c++;
     }
