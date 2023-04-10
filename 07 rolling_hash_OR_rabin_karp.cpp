@@ -8,12 +8,14 @@ hash(txt[s+1 .. s+m]) = ( d*{ hash(txt[s .. s+m-1]) – txt[s]* h } + txt[s + m]
 // hash( txt[s .. s+m-1] ) : Hash value at shift s
 // hash( txt[s+1 .. s+m] ) : Hash value at next shift (or shift s+1) 
 
-// d: Number of characters in the alphabet 
+// d: Number of characters (example lowercase english letters -> d=26) 
+// NOTE=> we can take ANY value for d => rabin_karp will work
+
 // q: A prime number 
 // h: d^(m-1)
 
 // Example: pattern length is 3 and string is “23456” 
-// You compute the value of the first window (which is “234”) as 234. 
+// You compute the value of the first window (which is “234”) as 234 (here we have taken d=10)
 // How will you compute the value of the next window “345”? You will do (234 – 2*100)*10 + 5 and get 345.
 
 
