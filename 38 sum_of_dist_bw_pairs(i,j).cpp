@@ -30,3 +30,8 @@ Explanation:
 // Note that when 5 is i in the pair (i, j) then we are never comparing its distance from 7, because we already counted 7 as i previously. 
 // So for the number 5, we only look at 3 and 1 behind it and calculate the deviation from the expected distance.
 
+IMPORTANT NOTE:
+// for i=0:
+// ans == 0
+// this is because there is NO pair (i,j) b/w which we will calculate distance
+
