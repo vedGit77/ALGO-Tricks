@@ -3,6 +3,9 @@
 // indices=>  [0, 1, 2, 3]
 
 // we need to find dist bw all pairs (i,j) -> NOTE: do NOT count (j,i)ka distance -> otherwise it will be counted 2x 
+
+//Naive approach => O(N^2)
+//Optimized approach => O(N)
  
   
 int ans=0, pre=0;
