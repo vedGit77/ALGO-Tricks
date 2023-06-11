@@ -23,7 +23,8 @@ Explanation:
 // Imagine we have the array [1, 3, 5, 7]. Let's go through it backwards. 
 // To compute the distance of all pairs (i, j) when 7 is i, we follow this procedure: 
 // There are [index] numbers behind 7. 
-// If they were all 7, then their sum would be 21. 
+
+// If they were all 7, then their sum would be 21, and distance = 0. 
 // Because we have a prefix sum, we know that their sum is 9 instead, which means they in total have a distance of 12 from 7. 
   
 // We repeat this procedure for 5, 3, and 1. 
