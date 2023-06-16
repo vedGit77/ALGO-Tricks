@@ -129,7 +129,7 @@ int binomialCoeff(int n, int r)
 	
 	inv[0] = 1;
 	
-	if(r+1>=2)
+	if(r>0)
 		inv[1] = 1;
 
 	
