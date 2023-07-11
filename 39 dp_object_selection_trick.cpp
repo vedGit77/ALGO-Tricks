@@ -46,8 +46,9 @@ public:
     void dfs(int i, int cnt, int k){
         if((i+k)>n || cnt==0)
             return;
-        
-        int take = pre[i+k]-pre[i] + fun(i+k, cnt-1, k);  //get values from dp table -> NOTE: we cll fun(), and NOT dp[i+k][cnt-1] because (i+k) can exceed size of dp
+
+        //the below 2 lines are exactly same in fun() also
+        int take = pre[i+k]-pre[i] + fun(i+k, cnt-1, k);  //get values from dp table -> NOTE: we call fun(), and NOT dp[i+k][cnt-1] because (i+k) can exceed size of dp
         int dont = fun(i+1, cnt, k);   //get values from dp table
 
         if(take >= dont){  //recursion
