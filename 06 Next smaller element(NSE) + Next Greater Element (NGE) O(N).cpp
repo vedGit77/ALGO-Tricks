@@ -1,6 +1,16 @@
-// A Stack based C++ program to find next smaller element for all array elements
-// Time and space: O(N)
+// There are 2 types of problems:
+// 1. next smaller (or greater) element
+// 2. next CLOSEST smaller (or greater) element -> means -> CLOSEST GREATER element for x -> SMALLEST element on the right side of x which is greater than x
 
+
+
+
+//For Problem_1 -> Next smaller or greater
+
+
+Stack based -> next smaller element for all array elements
+
+// Time and space: O(N)
 // we are writing code for NSE => almost similar approach for NGE
 
 #include <bits/stdc++.h>
@@ -57,3 +67,42 @@ int main()
 // 13 ---> 3
 // 21 ---> 3
 // 3 ---> -1
+
+
+
+
+
+
+
+//For Problem_2 -> next CLOSEST greater element 
+//Time O(N*logN)
+
+SET when next CLOSEST greater (or smaller)
+**MULTI**SET when next **CLOSEST greater than or EQUAL** (or smaller than or EQUAL)
+
+
+void printNGE(int a[], int n)
+{
+	set<int> ms;   
+
+	for (int i = 0; i < n; i++)
+		ms.insert(a[i]);
+
+	for (int i = 0; i < n; i++) {
+
+		auto it = ms.upper_bound(a[i]);
+
+		// if points to the end, then no NGE of that element
+		if (it == ms.end()) {
+			cout << "\n " << a[I] << " ----> " << -1;
+		}else {
+			cout << "\n " << a[I] << " ----> " << *it;
+		}
+
+		// find first occurrence of the index element and delete it
+		it = ms.lower_bound(a[i]);
+		ms.erase(it);
+	}
+}
+
+
