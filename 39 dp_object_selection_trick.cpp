@@ -44,6 +44,7 @@ public:
     }
 
     void dfs(int i, int cnt, int k){
+        //base condn similar to fun(), but we return 0 above.
         if((i+k)>n || cnt==0)
             return;
 
