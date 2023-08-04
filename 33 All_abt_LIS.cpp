@@ -32,9 +32,9 @@ int longestIncreasingSubsequence(int arr[], int n){
            temp.push_back(arr[i]);
            len++;  
         } 
-        else
+        else  //else -> includes == wala case also -> example we have temp array as -> [1,2,9] -> now arr[i] is 2 -> since we take lower_bound -> temp remains same
 	{
-            int ind = lower_bound(temp.begin(),temp.end(),arr[i]) - temp.begin();
+            int ind = lower_bound(temp.begin(),temp.end(),arr[i]) - temp.begin();    //DO NOT use uper_bound
             temp[ind] = arr[i];  //replace => DONT change len
         }
         
