@@ -14,4 +14,6 @@ SOLn => see the soln on LC
 BUT TRICK DEKHO => 
 very confusing to solve with low and high both => too many if else
 
-TRICK => apply => fun(high) - fun(low)  => reduces the code drastically
+TRICK => apply => fun(high) - fun(low - 1)  => reduces the code drastically 
+
+#IMP => low-1
