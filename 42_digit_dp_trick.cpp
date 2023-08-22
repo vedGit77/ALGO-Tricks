@@ -9,11 +9,12 @@ A number is beautiful if it meets both of the following conditions:
 Return the number of beautiful integers in the range [low, high].
 
 
-SOLn => see the soln on LC
-
-BUT TRICK DEKHO => 
+TRICK DEKHO => 
 very confusing to solve with low and high both => too many if else
 
 TRICK => apply => fun(high) - fun(low - 1)  => reduces the code drastically 
 
-#IMP => low-1
+# 2 things to take care of->
+  1. use (low-1) => NOT low (if question asks to include low as well)
+  2. use memset 2 TIMES => once for each dp call => VVVVIIIMMMMPPPPP!!!!
+
