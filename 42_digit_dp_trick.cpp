@@ -19,7 +19,7 @@ TRICK => apply => fun(high) - fun(low - 1)  => reduces the code drastically
 
 # 2 things to take care of->
   1. use (low-1) => NOT low (since question asks to include low as well)
-  2. use memset 2 TIMES => once for each dp call => VVVVIIIMMMMPPPPP!!!!
+  2. use memset(dp, -1, sizeof(dp)=> *** 2 TIMES *** => once for each dp call => VVVVIIIMMMMPPPPP!!!!
 
 
 # generally the parameters we use in digit dp=>
