@@ -1,4 +1,4 @@
-//whenever I need to rease elements from a set using a while loop:
+//whenever I need to erase elements from a set using a while loop:
 
 while(itr != s.end()){
     ...some code...
