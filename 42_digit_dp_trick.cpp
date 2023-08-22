@@ -8,6 +8,9 @@ A number is beautiful if it meets both of the following conditions:
 
 Return the number of beautiful integers in the range [low, high].
 
+see sol on LC -> here we wil discuss general trick ONLY
+
+
 
 TRICK DEKHO => 
 very confusing to solve with low and high both => too many if else
