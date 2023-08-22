@@ -1,19 +1,13 @@
-//whenever I need to rease elements from a set using a for/while loop:
+//whenever I need to rease elements from a set using a while loop:
 
-for (auto it = numbers.begin(); it != numbers.end(); ) {
-    if (.....){
-        it = numbers.erase(it);    //this is the TRICK !!!! => VVIMP
-    }else{
-        ++it;
-    }
+while(itr != s.end()){
+    ...some code...
+    itr = s.erase(itr);  //IMP trick
 }
 
-//another way we can write it:
+//Another method:
 
-for (auto it = numbers.begin(); it != numbers.end(); ) {
-    if (.....){
-        numbers.erase(it++);    //this is the TRICK !!!! => VVIMP
-    }else{
-        ++it;
-    }
+while(itr != s.end()){
+    ...some code...
+    s.erase(itr++);  //IMP trick
 }
