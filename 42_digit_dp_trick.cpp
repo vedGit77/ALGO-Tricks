@@ -18,3 +18,10 @@ TRICK => apply => fun(high) - fun(low - 1)  => reduces the code drastically
   1. use (low-1) => NOT low (since question asks to include low as well)
   2. use memset 2 TIMES => once for each dp call => VVVVIIIMMMMPPPPP!!!!
 
+
+# generally the parameters we use in digit dp=>
+  1. i (index of string -> the number is in form of string)
+  2. tight
+  3. zero (if all zeros till now)
+....other parameters based on question 
+
