@@ -1,5 +1,5 @@
 //GENERAL NOTE: throughout the code-> jaha bhi header files wale part mei maine 'int' likha hai
-//              i can change that to 'long long int' or 'doulbe' based on my requirement
+//              i can change that to 'long long int' or 'double' based on my requirement
 
 
 //same as set
