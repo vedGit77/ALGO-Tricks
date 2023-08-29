@@ -1,3 +1,7 @@
+//GENERAL NOTE: throughout the code-> jaha bhi header files wale part mei maine 'int' likha hai
+//              i can change that to 'long long int' or 'doulbe' based on my requirement
+
+
 //same as set
 //can do extra operations: 
 //1. order_of_key(k) : Number of items STRICTLY smaller than k .
