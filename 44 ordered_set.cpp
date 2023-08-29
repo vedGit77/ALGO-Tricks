@@ -19,7 +19,7 @@ using namespace __gnu_pbds;
 #define ordered_set tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update>
 
 int main(){
-  
+  	//VVIMP=> **DONT** write ordered_set<int> o_set;
 	ordered_set o_set; //declaration 
 
 	// insert function to insert in ordered set same as SET STL
