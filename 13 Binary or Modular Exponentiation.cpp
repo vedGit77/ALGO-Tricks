@@ -9,5 +9,5 @@ ll funpow(ll n, ll p){
     if(p%2==0)
         return funpow((n*n)%mod, p/2);
     else
-        return (n*funpow((n*n)%mod, p/2))%mod;
+        return (n * funpow((n*n)%mod, p/2))%mod;    //multiply by n
 }
