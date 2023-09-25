@@ -5,6 +5,8 @@
 
 hash(txt[s+1 .. s+m]) = ( d*{ hash(txt[s .. s+m-1]) – txt[s]* h } + txt[s + m] ) % q
 
+hash(txt[s+1 .. s+m]) = ( d*(something) + txt[s + m] ) % q  //d se ek BADA term multiply ho rha h
+
 // hash( txt[s .. s+m-1] ) : Hash value at shift s
 // hash( txt[s+1 .. s+m] ) : Hash value at next shift (or shift s+1) 
 
