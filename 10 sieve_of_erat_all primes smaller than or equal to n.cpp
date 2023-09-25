@@ -7,12 +7,12 @@ void SieveOfEratosthenes(int n)
     bool prime[n + 1];
     memset(prime, true, sizeof(prime));
  
-    for (int p = 2; p*p<=n; p++)  // p*p => repeated in both loops => beech mei, then left mei
+    for (int i = 2; i*i<=n; i++)  // i*i => repeated in both loops => beech mei, then left mei
     {  
-        if (prime[p] == true) 
+        if (prime[i] == true) 
         {
-            for (int i =p*p; i<=n; i+=p)   // i += p
-                prime[i] = false;
+            for (int j =i*i; j<=n; j+=i)   // j += i
+                prime[j] = false;
         }
     }
  
