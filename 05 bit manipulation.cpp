@@ -3,7 +3,7 @@
    eg x = 8.... "   "      "    " 1000....so ans = 3
 
 
-a+b = a^b + 2*(a&b)
+a+b = a^b + 2*(a&b)   // addition = XOR + 2*AND
   
 (a+b)%m = a%m + b%m
 
@@ -12,6 +12,8 @@ a+b = a^b + 2*(a&b)
 a^(a&b) = (a|b)^b
 
 
+// ⊕ , ^ => both mean XOR
+   
 Some properties of bitwise operations:
 a|b = a⊕b + a&b
 a⊕(a&b) = (a|b)⊕b
