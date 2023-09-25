@@ -1,4 +1,6 @@
 
+=> STL : __gcd(a,b);
+
 =>  n*m = GCD(n,m)*LCM(n,m)   
     
 => for coprime numbers, GCD = 1
