@@ -3,7 +3,7 @@ Given three numbers n, p and mod, compute (n^p) % mod.
 
 ll funpow(ll n, ll p){
     if(p==0)
-        return 1;
+        return 1;  //for n=0-> valid-> 0 ki power 0 = 1
     if(p==1)
         return n;
     if(p%2==0)
