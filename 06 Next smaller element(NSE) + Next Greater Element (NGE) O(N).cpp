@@ -77,6 +77,8 @@ int main()
 //For Problem_2 -> next CLOSEST greater element 
 //Time O(N*logN)
 
+Can be done using stack, i am writing other soln here
+
 SET when next CLOSEST greater (or smaller)
 **MULTI**SET when next **CLOSEST greater than or EQUAL** (or smaller than or EQUAL)
 
