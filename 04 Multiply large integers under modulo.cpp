@@ -8,22 +8,18 @@
 //   a * b = a + a * (b - 1).............here 1+ and 1*
 
 
-long long moduloMultiplication(long long a, long long b, long long mod)
-{
-    long long res = 0; // Initialize result
- 
-    // Update a if it is more than or equal to mod
-    a %= mod;
- 
-    while (b) {
-        if (b & 1)  //if odd
-            res = (res + a) % mod; //yaha res
- 
-        a = (2 * a) % mod;  //yaha a
- 
-        b >>= 1;  //DONO ke liye->odd/even
-    }
- 
-    return res;
-}
+long long fun(long long a, long long b, long long mod){
+    a = a%mod;
+    b = b%mod;
 
+    if(a==1)
+        return b;
+    if(b==1)
+        return a;
+
+    if((b%2)==0){
+        return (2 * fun(a, b/2, mod)%mod)%mod;
+    }else{
+        return (a%mod + fun(a, b-1, mod)%mod)%mod;
+    }
+}
