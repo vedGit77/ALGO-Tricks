@@ -10,11 +10,11 @@ hash(txt[s+1 .. s+m]) = ( d*(something) + txt[s + m] ) % q  //d se ek BADA term 
 // hash( txt[s .. s+m-1] ) : Hash value at shift s
 // hash( txt[s+1 .. s+m] ) : Hash value at next shift (or shift s+1) 
 
+// q: A prime number 
+// h: d^(m-1)
 // d: Number of characters (example lowercase english letters -> d=26) 
 // NOTE=> we can take ANY value for d => rabin_karp will work
 
-// q: A prime number 
-// h: d^(m-1)
 
 // Example: pattern length is 3 and string is “23456” 
 // You compute the value of the first window (which is “234”) as 234 
