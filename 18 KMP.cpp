@@ -277,76 +277,54 @@
 
 
 
-
-
-
-
-void computeLPSArray(char* pat, int M, int* lps);
-
-// Prints occurrences of txt[] in pat[]
-void KMPSearch(char* pat, char* txt)
-{
-	int M = strlen(pat);
-	int N = strlen(txt);
-
-	int lps[M];   //size of lps is always M
-
-	// Preprocess the pattern (calculate lps[] array)
-	computeLPSArray(pat, M, lps);
-
-	int i = 0; // index for txt[]
-	int j = 0; // index for pat[]
-	
-	while ((N - i) >= (M - j)) {       //imp condn in while loop 
-		if (pat[j] == txt[i]) {
-			j++;
-			i++;
-		}
-		
-		//if above (if) condn is true => i and j increment => again with these incremented i and j => we use (if) and (else if) wala condn
-		
-		if (j == M) {
-			printf("Found pattern at index %d ", i - j);     //imp => found @ (i-j)
-			j = lps[j - 1];
-		}
-		else if (i < N && pat[j] != txt[i]) {                //else if ki condn is IMP  => (i < N) && (pat[j] != txt[i])
-			if (j != 0)
-				j = lps[j - 1];
-			else
-				i++;
-		}
-	}
+void KMPStringSearch(char* pat, char* str) {
+    int M = strlen(pat);
+    int N = strlen(str);
+  
+    int lps[M];
+    computeLPSArray(pat, M, lps);
+  
+    int i = 0; 
+    int j = 0;
+    while (i < N) {
+        if (pat[j] == str[i]) {
+            j++;
+            i++;
+        }
+  
+        if (j == M) {
+            printf("Found pattern at index %d ", i - j);
+            j = lps[j - 1];
+        }
+        else if (i < N && pat[j] != str[i]) {
+            if (j != 0)
+                j = lps[j - 1];
+            else
+                i = i + 1;
+        }
+    }
 }
-
-
-void computeLPSArray(char* pat, int M, int* lps)
-{
-	//this whole function can be understood by the DEFN of len variable and lps array => very easy
-	
-	int len = 0; // length of the PREVIOUS longest prefix suffix
-	lps[0] = 0; // lps[0] is always 0
-
-	// the loop calculates lps[i] for i = 1 to M-1           ***** IMP => i=1, NOT 0 *****
-	int i = 1;
-	while (i < M) {
-		if (pat[i] == pat[len]) {
-			len++;
-			lps[i] = len;
-			i++;
-		}
-		else
-		{
-			if (len != 0) {
-				len = lps[len - 1];      //NOT lps[i-1] => logical => see defn of len
-				                         //do NOT increment i here
-			}
-			else 
-			{
-				lps[i] = 0;
-				i++;
-			}
-		}
-	}
+  
+void computeLPSArray(char* pat, int M, int* lps) {
+        int len = 0;
+  
+    lps[0] = 0;   
+       int i = 1;
+    while (i < M) {
+        if (pat[i] == pat[len]) {
+            len++;
+            lps[i] = len;
+            i++;
+        }
+        else{
+           if (len != 0) {
+                len = lps[len - 1];
+           }
+            else             {
+                lps[i] = 0;
+                i++;
+            }
+        }
+    }
 }
-
 
