@@ -290,26 +290,29 @@ void KMPStringSearch(char* pat, char* str) {
         if (pat[j] == str[i]) {
             j++;
             i++;
+            // same as LPS func but here we DONT update LPS array
         }
   
-        if (j == M) {
+        if (j == M)  //this if was NOT in lps function
+        {    
             printf("Found pattern at index %d ", i - j);
             j = lps[j - 1];
         }
-        else if (i < N && pat[j] != str[i]) {
-            if (j != 0)
+        else if (i < N && pat[j] != str[i]) {   //this else if condn was NOT in lps function
+            if (j != 0){
                 j = lps[j - 1];
-            else
+            }else{
                 i = i + 1;
+                // same as LPS func but here we DONT update LPS array
+            }
         }
     }
 }
   
 void computeLPSArray(char* pat, int M, int* lps) {
-        int len = 0;
+    lps[0] = 0; 
+    int len = 0, i = 1;   //len = 0, i = 1
   
-    lps[0] = 0;   
-       int i = 1;
     while (i < M) {
         if (pat[i] == pat[len]) {
             len++;
