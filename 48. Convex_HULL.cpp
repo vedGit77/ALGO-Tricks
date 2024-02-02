@@ -24,7 +24,7 @@ public:
     }
     vector<vector<int>> outerTrees(vector<vector<int>>& trees) {
         int sz = trees.size();
-        if(sz <= 3)
+        if(sz <= 3)     //corner case
             return trees;
         
         vector<vector<int>>up_hull;
