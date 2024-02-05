@@ -2,7 +2,7 @@
 
 auto itr = s.begin();
 while(itr!=s.end()){
-    if(..condn for erase...)
+    if(...condn for erase...)
         s.erase(itr++);
     else
         itr++;
