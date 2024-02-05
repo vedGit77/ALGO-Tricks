@@ -13,6 +13,7 @@ for (auto it = numbers.begin(); it != numbers.end(); ){   //for loop m DONT writ
 
 WITH WHILE LOOP:
 
+auto itr = s.begin();
 while(itr != s.end()){
     ...some code...
     s.erase(itr++);  //IMP trick
